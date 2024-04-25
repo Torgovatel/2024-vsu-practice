@@ -1,4 +1,4 @@
-INSERT INTO employees (name, surname, passportNumber, passportDate, salary)
+INSERT INTO employees (name, surname, passport_number, passport_date, salary)
 VALUES
     ('Иван', 'Иванов', '005201', '1990-01-01', 100000),
     ('Петр', 'Петров', '005202', '1991-02-02', 80000),

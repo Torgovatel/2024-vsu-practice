@@ -1,8 +1,6 @@
 package ru.management.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +20,7 @@ public class Department {
     private String city;
     private String street;
     private String region;
+    @Column(name = "postal_code")
     private String postalCode;
     private String phoneNumber;
 }

@@ -2,8 +2,8 @@ CREATE TABLE IF NOT EXISTS employees (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(50),
     surname VARCHAR(50),
-    passportNumber VARCHAR(6),
-    passportDate DATE,
+    passport_number VARCHAR(6),
+    passport_date DATE,
     salary INTEGER
 );
 
