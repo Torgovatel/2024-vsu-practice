@@ -16,12 +16,10 @@ public class EmployeeDepartment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
