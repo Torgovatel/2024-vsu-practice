@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS departments (
     street VARCHAR(100),
     region VARCHAR(50),
     postal_code VARCHAR(6),
-    phone_number VARCHAR(14)
+    phone_number VARCHAR(16)
 );
 
 CREATE TABLE IF NOT EXISTS employees_departments (
