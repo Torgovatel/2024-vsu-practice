@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS departments (
     city VARCHAR(100),
     street VARCHAR(100),
     region VARCHAR(50),
-    postal_code INTEGER,
+    postal_code VARCHAR(6),
     phone_number VARCHAR(14)
 );
 

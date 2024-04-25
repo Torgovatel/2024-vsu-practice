@@ -1,6 +1,7 @@
 package ru.management.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import ru.management.entity.Department;
@@ -15,13 +16,13 @@ public class EmployeeDepartment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
-
-    // Другие поля и методы
 }
