@@ -1,8 +1,10 @@
 package ru.management.util.converter;
 
+import org.springframework.stereotype.Component;
 import ru.management.dto.DepartmentDTO;
 import ru.management.entity.Department;
 
+@Component
 public class DepartmentConverter implements EDTConverter<Department, DepartmentDTO> {
     @Override
     public DepartmentDTO toDTO(Department entity) {
@@ -16,6 +18,7 @@ public class DepartmentConverter implements EDTConverter<Department, DepartmentD
                 .phoneNumber(entity.getPhoneNumber())
                 .build();
     }
+
     @Override
     public Department toEntity(DepartmentDTO dto) {
         return Department.builder()

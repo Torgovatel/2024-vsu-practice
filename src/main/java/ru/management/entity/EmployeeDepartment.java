@@ -1,11 +1,17 @@
 package ru.management.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "employees_departments")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class EmployeeDepartment {
 
     @Id

@@ -1,8 +1,10 @@
 package ru.management.util.converter;
 
+import org.springframework.stereotype.Component;
 import ru.management.dto.EmployeeDTO;
 import ru.management.entity.Employee;
 
+@Component
 public class EmployeeConverter implements EDTConverter<Employee, EmployeeDTO> {
     @Override
     public EmployeeDTO toDTO(Employee entity) {

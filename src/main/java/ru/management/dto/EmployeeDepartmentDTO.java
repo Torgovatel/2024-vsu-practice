@@ -3,9 +3,8 @@ package ru.management.dto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
-
-import ru.management.entity.Employee;
 import ru.management.entity.Department;
+import ru.management.entity.Employee;
 
 @Data
 @Getter
