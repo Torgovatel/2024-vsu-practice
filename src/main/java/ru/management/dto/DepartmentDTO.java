@@ -2,6 +2,7 @@ package ru.management.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 @Data
@@ -10,6 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DepartmentDTO {
+    @Positive
     private Long id;
     @NotBlank
     private String name;
