@@ -1,0 +1,335 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "API управления персоналом",
+    "version": "1.0.0",
+    "description": "API для работы с сотрудниками в системе управления предприятием"
+  },
+  "paths": {
+    "/employee": {
+      "post": {
+        "summary": "Добавление нового сотрудника",
+        "operationId": "addEmployee",
+        "requestBody": {
+          "description": "Информация о новом сотруднике (все поля обязательные)",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Сотрудник успешно добавлен",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatedEmployeeDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Данные сотрудника некорректны"
+          },
+          "503": {
+            "description": "Сервис недоступен"
+          }
+        }
+      }
+    },
+    "/employee/all": {
+      "get": {
+        "summary": "Получение списка всех сотрудников",
+        "operationId": "getAllEmployees",
+        "responses": {
+          "200": {
+            "description": "Список сотрудников предоставлен успешно",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CreatedEmployeeDTO"
+                  }
+                },
+                "examples": {
+                  "sampleResponse": {
+                    "value": [
+                      {
+                        "id": 1,
+                        "name": "Иван",
+                        "surname": "Иванов",
+                        "passportNumber": "123456",
+                        "passportDate": "2010-01-01",
+                        "salary": 65000,
+                        "creationDate": "2012-03-08"
+                      },
+                      {
+                        "id": 2,
+                        "name": "Петр",
+                        "surname": "Петров",
+                        "passportNumber": "654321",
+                        "passportDate": "2010-02-06",
+                        "salary": 35000
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Сервис недоступен"
+          }
+        }
+      }
+    },
+    "/employee/{id}": {
+      "get": {
+        "summary": "Получение информации о сотруднике по идентификатору",
+        "operationId": "getEmployeeById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Идентификатор сотрудника EmployeeID",
+            "schema": {
+              "$ref": "#/components/schemas/EmployeeID"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Информация о сотруднике успешно предоставлена"
+          },
+          "400": {
+            "description": "Некорректный EmployeeID (pathVariable: ID)"
+          },
+          "404": {
+            "description": "Сотрудник не найден"
+          },
+          "503": {
+            "description": "Сервис недоступен"
+          }
+        }
+      },
+      "put": {
+        "summary": "Обновление информации о сотруднике",
+        "operationId": "updateEmployee",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Идентификатор сотрудника EmployeeID",
+            "schema": {
+              "$ref": "#/components/schemas/EmployeeID"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Обновленная информация о сотруднике, наличие всех полей не обязательно",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatedEmployeeDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Информация о сотруднике успешно обновлена"
+          },
+          "400": {
+            "description": "Данные сотрудника некорректны"
+          },
+          "404": {
+            "description": "Сотрудник не найден"
+          },
+          "503": {
+            "description": "Сервис недоступен"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Удаление сотрудника по идентификатору",
+        "operationId": "deleteEmployee",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Идентификатор сотрудника EmployeeID",
+            "schema": {
+              "$ref": "#/components/schemas/EmployeeID"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Сотрудник успешно удален"
+          },
+          "400": {
+            "description": "Некорректный EmployeeID (pathVariable: ID)"
+          },
+          "404": {
+            "description": "Сотрудник не найден"
+          },
+          "503": {
+            "description": "Сервис недоступен"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EmployeeID": {
+        "type": "integer",
+        "format": "int64",
+        "description": "Уникальный идентификатор сотрудника",
+        "minimum": 1
+      },
+      "EmployeeDTO": {
+        "type": "object",
+        "required": [
+          "name",
+          "surname",
+          "passportNumber",
+          "passportDate",
+          "salary"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Имя",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "surname": {
+            "type": "string",
+            "description": "Фамилия",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "passportNumber": {
+            "type": "string",
+            "description": "Номер паспорта (6 цифр)",
+            "pattern": "^\\d{6}$"
+          },
+          "passportDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Дата выдачи паспорта, формат YYYY-MM-DD"
+          },
+          "salary": {
+            "type": "integer",
+            "description": "Зарплата (положительное число)",
+            "minimum": 1,
+            "default": 40000
+          }
+        },
+        "example": {
+          "name": "Иван",
+          "surname": "Иванов",
+          "passportNumber": "490802",
+          "passportDate": "2010-03-08",
+          "salary": 65000
+        }
+      },
+      "CreatedEmployeeDTO": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "surname",
+          "passportNumber",
+          "passportDate",
+          "salary"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "EmployeeID",
+            "minimum": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Имя",
+            "minLength": 1
+          },
+          "surname": {
+            "type": "string",
+            "description": "Фамилия",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "passportNumber": {
+            "type": "string",
+            "description": "Номер паспорта (6 цифр)",
+            "pattern": "^\\d{6}$"
+          },
+          "passportDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Дата выдачи паспорта, формат YYYY-MM-DD"
+          },
+          "salary": {
+            "type": "integer",
+            "description": "Зарплата (положительное число)",
+            "minimum": 1,
+            "default": 40000
+          }
+        },
+        "example": {
+          "id": 11,
+          "name": "Иван",
+          "surname": "Иванов",
+          "passportNumber": "490802",
+          "passportDate": "2010-03-08",
+          "salary": 65000
+        }
+      },
+      "UpdatedEmployeeDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Имя",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "surname": {
+            "type": "string",
+            "description": "Фамилия",
+            "minLength": 1
+          },
+          "passportNumber": {
+            "type": "string",
+            "description": "Номер паспорта (6 цифр)",
+            "pattern": "^\\d{6}$"
+          },
+          "passportDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Дата выдачи паспорта, формат YYYY-MM-DD"
+          },
+          "salary": {
+            "type": "integer",
+            "description": "Зарплата (положительное число)",
+            "minimum": 1,
+            "default": 40000
+          }
+        }
+      }
+    }
+  }
+}
