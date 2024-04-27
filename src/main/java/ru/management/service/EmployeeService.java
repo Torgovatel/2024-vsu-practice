@@ -53,13 +53,16 @@ public class EmployeeService {
         }
     }
 
-    public EmployeeDTO getEmployeeById(long id) throws DBAccessException, NotFoundException {
+    public EmployeeDTO getEmployeeById(long id) throws DBAccessException, NotFoundException, NumberFormatException {
         try {
+            if (id <= 0) {
+                throw new NumberFormatException("id must be positive number");
+            }
             Optional<Employee> optionalEmployee = employeeRepository.findById(id);
             Employee employee = optionalEmployee.orElseThrow(() -> new NotFoundException("Employee with id " + id + " not found"));
             return employeeConverter.toDTO(employee);
         } catch (Exception e) {
-            if (e instanceof NotFoundException) {
+            if (e instanceof NotFoundException || e instanceof NumberFormatException) {
                 throw e;
             } else {
                 throw new DBAccessException(e.getMessage());
@@ -71,6 +74,9 @@ public class EmployeeService {
     public void updateEmployeeById(long id, EmployeeDTO employeeDTO)
             throws DBAccessException, NotFoundException, IllegalArgumentException {
         try {
+            if (id <= 0) {
+                throw new NumberFormatException("id must be positive number");
+            }
             Optional<Employee> optionalEmployee = employeeRepository.findById(id);
             Employee existingEmployee = optionalEmployee.orElseThrow(() -> new NotFoundException("Employee with id " + id + " not found"));
             employeeDTO = EmployeeDTO.builder()
@@ -113,13 +119,16 @@ public class EmployeeService {
     }
 
     @Transactional
-    public void deleteEmployeeById(long id) throws DBAccessException, NotFoundException {
+    public void deleteEmployeeById(long id) throws DBAccessException, NotFoundException, NumberFormatException {
         try {
+            if (id <= 0) {
+                throw new NumberFormatException("id must be positive number");
+            }
             Optional<Employee> optionalEmployee = employeeRepository.findById(id);
             Employee employee = optionalEmployee.orElseThrow(() -> new NotFoundException("Employee with id " + id + " not found"));
             employeeRepository.deleteById(id);
         } catch (Exception e) {
-            if (e instanceof NotFoundException) {
+            if (e instanceof NotFoundException || e instanceof NumberFormatException) {
                 throw e;
             }
             throw new DBAccessException(e.getMessage());

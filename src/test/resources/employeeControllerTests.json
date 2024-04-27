@@ -1,0 +1,161 @@
+{
+  "valid": [
+    {
+      "id": 1,
+      "name": "John",
+      "surname": "Doe",
+      "passportNumber": "123456",
+      "passportDate": "2022-04-27",
+      "salary": 50000
+    },
+    {
+      "id": 2,
+      "name": "Alice",
+      "surname": "Smith",
+      "passportNumber": "987654",
+      "passportDate": "2023-05-15",
+      "salary": 60000
+    },
+    {
+      "id": 3,
+      "name": "Bob",
+      "surname": "Johnson",
+      "passportNumber": "456789",
+      "passportDate": "2021-12-10",
+      "salary": 55000
+    },
+    {
+      "id": 4,
+      "name": "Mary",
+      "surname": "Brown",
+      "passportNumber": "789012",
+      "passportDate": "2024-03-20",
+      "salary": 52000
+    },
+    {
+      "id": 5,
+      "name": "Michael",
+      "surname": "Wilson",
+      "passportNumber": "345678",
+      "passportDate": "2023-06-05",
+      "salary": 58000
+    },
+    {
+      "id": 6,
+      "name": "Emma",
+      "surname": "Jones",
+      "passportNumber": "234567",
+      "passportDate": "2022-09-12",
+      "salary": 54000
+    },
+    {
+      "id": 7,
+      "name": "David",
+      "surname": "Taylor",
+      "passportNumber": "890123",
+      "passportDate": "2021-07-28",
+      "salary": 56000
+    },
+    {
+      "id": 8,
+      "name": "Sophia",
+      "surname": "Clark",
+      "passportNumber": "567890",
+      "passportDate": "2022-11-04",
+      "salary": 53000
+    },
+    {
+      "id": 9,
+      "name": "James",
+      "surname": "Miller",
+      "passportNumber": "901234",
+      "passportDate": "2021-08-17",
+      "salary": 57000
+    },
+    {
+      "id": 10,
+      "name": "Olivia",
+      "surname": "White",
+      "passportNumber": "678901",
+      "passportDate": "2020-02-22",
+      "salary": 59000
+    }
+  ],
+  "invalid": [
+    {
+      "id": 11,
+      "name": "",
+      "surname": "Doe",
+      "passportNumber": "123456",
+      "passportDate": "2012-04-27",
+      "salary": 50000
+    },
+    {
+      "id": 12,
+      "name": "John",
+      "surname": "",
+      "passportNumber": "987654",
+      "passportDate": "2013-05-15",
+      "salary": 60000
+    },
+    {
+      "id": 13,
+      "name": "Alice",
+      "surname": "Smith",
+      "passportNumber": "ABC123",
+      "passportDate": "2013-05-15",
+      "salary": 60000
+    },
+    {
+      "id": 14,
+      "name": "Bob",
+      "surname": "Johnson",
+      "passportNumber": "456789",
+      "passportDate": "2011-12-10",
+      "salary": null
+    },
+    {
+      "id": 15,
+      "name": "Mary",
+      "surname": "",
+      "passportNumber": "789012",
+      "passportDate": "2014-03-20",
+      "salary": -52000
+    },
+    {
+      "id": 16,
+      "name": "Michael",
+      "surname": "Wilson",
+      "passportNumber": "345678",
+      "passportDate": "2015-06-05"
+    },
+    {
+      "id": 17,
+      "name": "Emma",
+      "surname": "Jones",
+      "passportNumber": "2345675677",
+      "passportDate": "2016-09-12",
+      "salary": 54000
+    },
+    {
+      "id": 18,
+      "name": "David",
+      "surname": "Taylor",
+      "passportNumber": "8901234"
+    },
+    {
+      "id": 19,
+      "name": "",
+      "surname": "Clark",
+      "salary": 53000
+    },
+    {
+      "id": 20,
+      "name": "",
+      "surname": "Miller",
+      "passportNumber": "901234234",
+      "passportDate": "2019-08-12",
+      "salary": 57000
+    }
+  ]
+}
