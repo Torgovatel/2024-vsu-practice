@@ -1,4 +1,4 @@
-package ru.management.controller;
+package ru.management.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -6,10 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import ru.management.dto.EmployeeDTO;
-import ru.management.exception.DBAccessException;
-import ru.management.exception.NotFoundException;
-import ru.management.service.EmployeeService;
+import ru.management.api.controllers.EmployeeController;
+import ru.management.api.dto.EmployeeDTO;
+import ru.management.api.exceptions.DBAccessException;
+import ru.management.api.exceptions.NotFoundException;
+import ru.management.services.EmployeeService;
 import ru.management.utils.TestDataLoader;
 
 import java.io.IOException;

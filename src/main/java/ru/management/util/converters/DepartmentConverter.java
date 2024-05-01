@@ -1,8 +1,8 @@
-package ru.management.util.converter;
+package ru.management.util.converters;
 
 import org.springframework.stereotype.Component;
-import ru.management.dto.DepartmentDTO;
-import ru.management.entity.Department;
+import ru.management.api.dto.DepartmentDTO;
+import ru.management.store.entities.Department;
 
 @Component
 public class DepartmentConverter implements EDTConverter<Department, DepartmentDTO> {

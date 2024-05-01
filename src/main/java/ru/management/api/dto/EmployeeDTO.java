@@ -1,4 +1,4 @@
-package ru.management.dto;
+package ru.management.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonMerge;
 import jakarta.validation.constraints.NotBlank;

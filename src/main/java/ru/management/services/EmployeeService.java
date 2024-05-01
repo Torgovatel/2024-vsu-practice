@@ -1,20 +1,17 @@
-package ru.management.service;
+package ru.management.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BeanPropertyBindingResult;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-import org.springframework.web.bind.annotation.RequestBody;
-import ru.management.dto.EmployeeDTO;
-import ru.management.entity.Employee;
-import ru.management.exception.DBAccessException;
-import ru.management.exception.NotFoundException;
-import ru.management.repository.EmployeeRepository;
-import ru.management.util.converter.EmployeeConverter;
+import ru.management.api.dto.EmployeeDTO;
+import ru.management.store.entities.Employee;
+import ru.management.api.exceptions.DBAccessException;
+import ru.management.api.exceptions.NotFoundException;
+import ru.management.store.repositories.EmployeeRepository;
+import ru.management.util.converters.EmployeeConverter;
 
 import java.util.List;
 import java.util.Objects;

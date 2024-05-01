@@ -1,4 +1,4 @@
-package ru.management.controller;
+package ru.management.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -6,10 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.management.api.EmployeeAPI;
-import ru.management.dto.EmployeeDTO;
-import ru.management.exception.DBAccessException;
-import ru.management.exception.NotFoundException;
-import ru.management.service.EmployeeService;
+import ru.management.api.dto.EmployeeDTO;
+import ru.management.api.exceptions.DBAccessException;
+import ru.management.api.exceptions.NotFoundException;
+import ru.management.services.EmployeeService;
 
 import java.util.List;
 

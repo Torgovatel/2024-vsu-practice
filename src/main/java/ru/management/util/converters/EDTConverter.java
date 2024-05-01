@@ -1,4 +1,4 @@
-package ru.management.util.converter;
+package ru.management.util.converters;
 
 import org.springframework.stereotype.Component;
 

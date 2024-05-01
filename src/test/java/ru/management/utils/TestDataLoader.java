@@ -2,7 +2,7 @@ package ru.management.utils;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ru.management.dto.EmployeeDTO;
+import ru.management.api.dto.EmployeeDTO;
 
 import java.io.File;
 import java.io.IOException;

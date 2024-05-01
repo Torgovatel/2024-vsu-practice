@@ -1,10 +1,10 @@
-package ru.management.dto;
+package ru.management.api.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
-import ru.management.entity.Department;
-import ru.management.entity.Employee;
+import ru.management.store.entities.Department;
+import ru.management.store.entities.Employee;
 
 @Data
 @Getter

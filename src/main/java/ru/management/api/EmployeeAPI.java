@@ -1,11 +1,8 @@
 package ru.management.api;
 
-import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.management.dto.EmployeeDTO;
+import ru.management.api.dto.EmployeeDTO;
 
 import java.util.List;
 

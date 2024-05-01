@@ -1,4 +1,4 @@
-package ru.management.exception;
+package ru.management.api.exceptions;
 
 import org.springframework.dao.DataAccessException;
 

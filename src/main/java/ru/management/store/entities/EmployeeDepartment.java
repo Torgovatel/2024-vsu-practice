@@ -1,4 +1,4 @@
-package ru.management.entity;
+package ru.management.store.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
