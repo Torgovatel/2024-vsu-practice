@@ -7,9 +7,9 @@ import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import ru.management.api.dto.EmployeeDTO;
-import ru.management.store.entities.Employee;
 import ru.management.api.exceptions.DBAccessException;
 import ru.management.api.exceptions.NotFoundException;
+import ru.management.store.entities.Employee;
 import ru.management.store.repositories.EmployeeRepository;
 import ru.management.util.converters.EmployeeConverter;
 
@@ -84,7 +84,7 @@ public class EmployeeService {
                     .passportDate(Objects.requireNonNullElse(employeeDTO.getPassportDate(), existingEmployee.getPassportDate()))
                     .salary(Objects.requireNonNullElse(employeeDTO.getSalary(), existingEmployee.getSalary()))
                     .build();
-            if(!isValidEmployeeDTO(employeeDTO)) {
+            if (!isValidEmployeeDTO(employeeDTO)) {
                 throw new IllegalArgumentException(employeeDTO.toString() + " is no valid employee");
             }
             existingEmployee.setName(Objects.requireNonNullElse(employeeDTO.getName(), existingEmployee.getName()));
@@ -105,7 +105,7 @@ public class EmployeeService {
     @Transactional
     public EmployeeDTO createEmployee(EmployeeDTO employeeDTO) throws DBAccessException, IllegalArgumentException {
         try {
-            if(!isValidEmployeeDTO(employeeDTO)) {
+            if (!isValidEmployeeDTO(employeeDTO)) {
                 throw new IllegalArgumentException(employeeDTO.toString() + " is no valid employee");
             }
             Employee newEmployee = employeeRepository.save(employeeConverter.toEntity(employeeDTO));
