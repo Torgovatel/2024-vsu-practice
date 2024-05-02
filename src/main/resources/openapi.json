@@ -9,7 +9,7 @@
     "/employee": {
       "post": {
         "summary": "Добавление нового сотрудника",
-        "operationId": "addEmployee",
+        "operationId": "createEmployee",
         "requestBody": {
           "description": "Информация о новом сотруднике (все поля обязательные)",
           "required": true,
@@ -41,7 +41,7 @@
         }
       }
     },
-    "/employee/all": {
+    "/employees": {
       "get": {
         "summary": "Получение списка всех сотрудников",
         "operationId": "getAllEmployees",
@@ -105,7 +105,14 @@
         ],
         "responses": {
           "200": {
-            "description": "Информация о сотруднике успешно предоставлена"
+            "description": "Информация о сотруднике успешно предоставлена",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatedEmployeeDTO"
+                }
+              }
+            }
           },
           "400": {
             "description": "Некорректный EmployeeID (pathVariable: ID)"
@@ -120,7 +127,7 @@
       },
       "put": {
         "summary": "Обновление информации о сотруднике",
-        "operationId": "updateEmployee",
+        "operationId": "updateEmployeeById",
         "parameters": [
           {
             "name": "id",
@@ -160,7 +167,7 @@
       },
       "delete": {
         "summary": "Удаление сотрудника по идентификатору",
-        "operationId": "deleteEmployee",
+        "operationId": "deleteEmployeeById",
         "parameters": [
           {
             "name": "id",

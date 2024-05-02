@@ -6,20 +6,20 @@ import ru.management.api.dto.EmployeeDTO;
 
 import java.util.List;
 
-@RequestMapping("/default")
+@RequestMapping("/")
 public interface EmployeeAPI {
-    @PostMapping
-    ResponseEntity<EmployeeDTO> create(@RequestBody EmployeeDTO employeeDTO);
+    @PostMapping("/employee")
+    ResponseEntity<EmployeeDTO> createEmployee(@RequestBody EmployeeDTO employeeDTO);
 
-    @GetMapping("/all")
-    ResponseEntity<List<EmployeeDTO>> getAll();
+    @GetMapping("/employees")
+    ResponseEntity<List<EmployeeDTO>> getAllEmployees();
 
-    @GetMapping("/{id}")
-    ResponseEntity<EmployeeDTO> getById(@PathVariable String id);
+    @GetMapping("/employee/{id}")
+    ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable String id);
 
-    @PutMapping("/{id}")
-    ResponseEntity<Void> updateById(@PathVariable String id, @RequestBody EmployeeDTO employeeDTO);
+    @PutMapping("/employee/{id}")
+    ResponseEntity<Void> updateEmployeeById(@PathVariable String id, @RequestBody EmployeeDTO employeeDTO);
 
-    @DeleteMapping("/{id}")
-    ResponseEntity<Void> deleteById(@PathVariable String id);
+    @DeleteMapping("/employee/{id}")
+    ResponseEntity<Void> deleteEmployeeById(@PathVariable String id);
 }
