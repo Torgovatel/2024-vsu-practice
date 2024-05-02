@@ -2,12 +2,14 @@ package ru.management.api.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.management.store.entities.Department;
 import ru.management.store.entities.Employee;
 
 @Data
-@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
