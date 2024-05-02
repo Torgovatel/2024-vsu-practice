@@ -5,16 +5,18 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class EmployeeDTO {
     @Positive
     private Long id;
@@ -34,5 +36,5 @@ public class EmployeeDTO {
     @NotNull
     @JsonMerge
     @Positive
-    private Integer salary;
+    private BigDecimal salary;
 }

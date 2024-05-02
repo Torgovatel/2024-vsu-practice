@@ -3,7 +3,6 @@ package ru.management.api.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.management.api.EmployeeAPI;
 import ru.management.api.dto.EmployeeDTO;
@@ -15,7 +14,6 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/employee")
 public class EmployeeController implements EmployeeAPI {
     private final EmployeeService employeeService;
 
@@ -25,7 +23,7 @@ public class EmployeeController implements EmployeeAPI {
     }
 
     @Override
-    public ResponseEntity<EmployeeDTO> create(EmployeeDTO employeeDTO) throws DBAccessException, IllegalArgumentException {
+    public ResponseEntity<EmployeeDTO> createEmployee(EmployeeDTO employeeDTO) throws DBAccessException, IllegalArgumentException {
         try {
             EmployeeDTO employee = employeeService.createEmployee(employeeDTO);
             return ResponseEntity.status(HttpStatus.OK).body(employee);
@@ -37,7 +35,7 @@ public class EmployeeController implements EmployeeAPI {
     }
 
     @Override
-    public ResponseEntity<List<EmployeeDTO>> getAll() {
+    public ResponseEntity<List<EmployeeDTO>> getAllEmployees() {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(employeeService.getAllEmployees());
         } catch (DBAccessException e) {
@@ -46,7 +44,7 @@ public class EmployeeController implements EmployeeAPI {
     }
 
     @Override
-    public ResponseEntity<EmployeeDTO> getById(String id) {
+    public ResponseEntity<EmployeeDTO> getEmployeeById(String id) {
         try {
             long employeeId = Long.parseLong(id);
             return ResponseEntity.status(HttpStatus.OK).body(employeeService.getEmployeeById(employeeId));
@@ -60,7 +58,7 @@ public class EmployeeController implements EmployeeAPI {
     }
 
     @Override
-    public ResponseEntity<Void> updateById(String id, EmployeeDTO employeeDTO) {
+    public ResponseEntity<Void> updateEmployeeById(String id, EmployeeDTO employeeDTO) {
         try {
             long employeeId = Long.parseLong(id);
             employeeService.updateEmployeeById(employeeId, employeeDTO);
@@ -75,7 +73,7 @@ public class EmployeeController implements EmployeeAPI {
     }
 
     @Override
-    public ResponseEntity<Void> deleteById(String id) {
+    public ResponseEntity<Void> deleteEmployeeById(String id) {
         try {
             long employeeId = Long.parseLong(id);
             employeeService.deleteEmployeeById(employeeId);
