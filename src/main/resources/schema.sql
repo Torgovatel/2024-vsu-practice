@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS employees
     surname         VARCHAR(50),
     passport_number VARCHAR(6),
     passport_date   DATE,
-    salary          INTEGER
+    salary          NUMERIC(10, 2)
 );
 
 CREATE TABLE IF NOT EXISTS departments

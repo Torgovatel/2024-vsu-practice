@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
@@ -34,5 +35,5 @@ public class EmployeeDTO {
     @NotNull
     @JsonMerge
     @Positive
-    private Integer salary;
+    private BigDecimal salary;
 }

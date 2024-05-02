@@ -3,6 +3,7 @@ package ru.management.store.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -22,6 +23,6 @@ public class Employee {
     private String passportNumber;
     @Column(name = "passport_date")
     private Date passportDate;
-    private Integer salary;
+    private BigDecimal salary;
 }
 

@@ -35,6 +35,7 @@ class EmployeeControllerTest {
         ObjectMapper objectMapper = new ObjectMapper();
         testData = objectMapper.readValue(jsonContent, TestDataLoader.TestData.class);
     }
+
     @Test
     void getAll_ReturnsListOfEmployees() {
         when(employeeService.getAllEmployees()).thenReturn(testData.getValid());
@@ -43,6 +44,7 @@ class EmployeeControllerTest {
         assertEquals(testData.getValid(), response.getBody());
         verify(employeeService).getAllEmployees();
     }
+
     @Test
     void getById_ValidId_ReturnsEmployee() {
         testData.getValid().forEach(validEmployeeDTO -> {
@@ -54,6 +56,7 @@ class EmployeeControllerTest {
             verify(employeeService).getEmployeeById(id);
         });
     }
+
     @Test
     void getById_InvalidId_ReturnsBadRequest() {
         String invalidId = "abc";
@@ -80,6 +83,7 @@ class EmployeeControllerTest {
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         verify(employeeService).getEmployeeById(nonExistingId);
     }
+
     @Test
     void updateById_ValidData_ReturnsNoContent() {
         testData.getValid().forEach(validEmployeeDTO -> {
@@ -101,6 +105,7 @@ class EmployeeControllerTest {
             verify(employeeService).updateEmployeeById(id, invalidEmployeeDTO);
         });
     }
+
     @Test
     void updateById_NonExistingId_ReturnsNotFound() {
         long nonExistingId = 999L;
@@ -111,6 +116,7 @@ class EmployeeControllerTest {
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         verify(employeeService).updateEmployeeById(nonExistingId, updatedEmployee);
     }
+
     @Test
     void deleteById_ValidId_ReturnsNoContent() {
         testData.getValid().stream().map(EmployeeDTO::getId).forEach(id -> {
@@ -120,6 +126,7 @@ class EmployeeControllerTest {
             verify(employeeService).deleteEmployeeById(id);
         });
     }
+
     @Test
     void deleteById_InvalidId_ReturnsBadRequest() {
         String invalidId = "abc";
