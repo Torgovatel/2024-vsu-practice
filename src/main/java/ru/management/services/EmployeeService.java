@@ -105,12 +105,15 @@ public class EmployeeService {
     @Transactional
     public EmployeeDTO createEmployee(EmployeeDTO employeeDTO) throws DBAccessException, IllegalArgumentException {
         try {
-            if (!isNotValidEmployeeDTO(employeeDTO)) {
+            if (isNotValidEmployeeDTO(employeeDTO)) {
                 throw new IllegalArgumentException(employeeDTO.toString() + " is no valid employee");
             }
             Employee newEmployee = employeeRepository.save(employeeConverter.toEntity(employeeDTO));
             return employeeConverter.toDTO(newEmployee);
         } catch (Exception e) {
+            if (e instanceof  IllegalArgumentException) {
+                throw e;
+            }
             throw new DBAccessException(e.getMessage());
         }
     }

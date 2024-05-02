@@ -65,8 +65,7 @@
                         "surname": "Иванов",
                         "passportNumber": "123456",
                         "passportDate": "2010-01-01",
-                        "salary": 65000,
-                        "creationDate": "2012-03-08"
+                        "salary": 65000
                       },
                       {
                         "id": 2,
