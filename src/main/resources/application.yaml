@@ -1,15 +1,19 @@
 spring:
   application:
-    name=employee-management
+    name: employee-management
   datasource:
     url: jdbc:postgresql://localhost:5432/Practice
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
-    jpa:
-      hibernate:
-        ddl-auto: update
-      show-sql: true
-    sql:
-      init:
-        platform: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      platform: postgres
+      data-locations: classpath:data.sql
+      encoding: utf-8
+      mode: always
