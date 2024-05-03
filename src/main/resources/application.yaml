@@ -1,4 +1,6 @@
 spring:
+  jackson:
+    time-zone: Europe/Moscow
   application:
     name: employee-management
   datasource:
