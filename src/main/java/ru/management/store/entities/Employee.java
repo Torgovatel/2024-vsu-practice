@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -23,6 +24,7 @@ public class Employee {
     private String surname;
     @Column(name = "passport_number")
     private String passportNumber;
+    @Temporal(TemporalType.DATE)
     @Column(name = "passport_date")
     private Date passportDate;
     private BigDecimal salary;
