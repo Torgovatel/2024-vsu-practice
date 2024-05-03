@@ -99,7 +99,7 @@ public class EmployeeService {
             existingEmployee.setPassportNumber(Objects.requireNonNullElse(employeeDTO.getPassportNumber(), existingEmployee.getPassportNumber()));
             existingEmployee.setPassportDate(Objects.requireNonNullElse(employeeDTO.getPassportDate(), existingEmployee.getPassportDate()));
             existingEmployee.setSalary(Objects.requireNonNullElse(employeeDTO.getSalary(), existingEmployee.getSalary()));
-            employeeRepository.save(existingEmployee);
+            employeeRepository.saveAndFlush(existingEmployee);
         } catch (Exception e) {
             if (e instanceof NotFoundException || e instanceof InvalidDataException) {
                 throw e;
@@ -117,7 +117,7 @@ public class EmployeeService {
             if (isNotValidEmployeeDTO(employeeDTO)) {
                 throw new InvalidDataException(employeeDTO.toString() + " is no valid employee");
             }
-            Employee newEmployee = employeeRepository.save(employeeConverter.toEntity(employeeDTO));
+            Employee newEmployee = employeeRepository.saveAndFlush(employeeConverter.toEntity(employeeDTO));
             return employeeConverter.toDTO(newEmployee);
         } catch (Exception e) {
             if (e instanceof InvalidDataException) {
