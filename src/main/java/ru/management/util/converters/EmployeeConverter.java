@@ -21,6 +21,7 @@ public class EmployeeConverter implements EDTConverter<Employee, EmployeeDTO> {
     @Override
     public Employee toEntity(EmployeeDTO dto) {
         return Employee.builder()
+                .id(dto.getId())
                 .name(dto.getName())
                 .surname(dto.getSurname())
                 .passportNumber(dto.getPassportNumber())
