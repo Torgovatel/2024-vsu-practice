@@ -190,9 +190,8 @@
       "id": 14,
       "name": "Bob",
       "surname": "Johnson",
-      "passportNumber": "456789",
-      "passportDate": "2011-12-10",
-      "salary": null
+      "passportNumber": "45j6789",
+      "passportDate": "2011-12-10"
     },
     {
       "id": 15,
@@ -205,8 +204,7 @@
     {
       "id": 16,
       "name": "Michael",
-      "surname": "Wilson",
-      "passportNumber": "345678",
+      "passportNumber": -345678,
       "passportDate": "2015-06-05"
     },
     {

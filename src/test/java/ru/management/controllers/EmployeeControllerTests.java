@@ -174,7 +174,8 @@ class EmployeeControllerTest {
                     .andExpect(status().is(400));
         }
         verify(employeeRepository, times(testDataLoader.getValidDTO().size())).saveAndFlush(any(Employee.class));
-        verify(employeeRepository, times(testDataLoader.getValidDTO().size())).findById(anyLong());
+        verify(employeeRepository, times(testDataLoader.getValidDTO().size() +
+                testDataLoader.getInvalidDTO().size())).findById(anyLong());
         // invalid id
         String testRequestJson = objectMapper.writeValueAsString(testDataLoader.getValidDTO().get(0))
                 .replaceFirst("\"id\":\\d*,", "");
@@ -186,7 +187,8 @@ class EmployeeControllerTest {
                     .andExpect(status().is(400));
         }
         verify(employeeRepository, times(testDataLoader.getValidDTO().size())).saveAndFlush(any(Employee.class));
-        verify(employeeRepository, times(testDataLoader.getValidDTO().size())).findById(anyLong());
+        verify(employeeRepository, times(testDataLoader.getValidDTO().size() +
+                testDataLoader.getInvalidDTO().size())).findById(anyLong());
         // not found
         for (int index = 0; index < testDataLoader.getValidDTO().size(); index++) {
             EmployeeDTO currentEmployee = testDataLoader.getValidDTO().get(index);
@@ -201,7 +203,8 @@ class EmployeeControllerTest {
                     .andExpect(status().is(404));
         }
         verify(employeeRepository, times(testDataLoader.getValidDTO().size())).saveAndFlush(any(Employee.class));
-        verify(employeeRepository, times(2*testDataLoader.getValidDTO().size())).findById(anyLong());
+        verify(employeeRepository, times(2*testDataLoader.getValidDTO().size() +
+                testDataLoader.getInvalidDTO().size())).findById(anyLong());
         // db connection failed
         when(employeeRepository.findById(anyLong())).thenThrow(CannotGetJdbcConnectionException.class);
         EmployeeDTO testEmployee = testDataLoader.getValidDTO().get(0);
@@ -213,7 +216,8 @@ class EmployeeControllerTest {
                         .content(requestJson))
                 .andExpect(status().is(503));
         verify(employeeRepository, times(testDataLoader.getValidDTO().size())).saveAndFlush(any(Employee.class));
-        verify(employeeRepository, times(1 + 2*testDataLoader.getValidDTO().size())).findById(anyLong());
+        verify(employeeRepository, times(1 + 2*testDataLoader.getValidDTO().size() +
+                testDataLoader.getInvalidDTO().size())).findById(anyLong());
     }
 
     @Test
