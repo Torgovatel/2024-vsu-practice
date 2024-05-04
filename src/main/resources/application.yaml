@@ -19,5 +19,3 @@ spring:
       data-locations: classpath:data.sql
       encoding: utf-8
       mode: always
-  jackson:
-    time-zone: Europe/Moscow
