@@ -15,13 +15,11 @@ import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.management.api.controllers.EmployeeController;
 import ru.management.api.dto.EmployeeDTO;
-import ru.management.api.exceptions.NotFoundException;
 import ru.management.services.EmployeeService;
 import ru.management.store.entities.Employee;
 import ru.management.store.repositories.EmployeeRepository;
 import ru.management.utils.TestDataLoader;
 
-import javax.swing.text.html.parser.Entity;
 import java.text.SimpleDateFormat;
 import java.util.Optional;
 
@@ -203,7 +201,7 @@ class EmployeeControllerTest {
                     .andExpect(status().is(404));
         }
         verify(employeeRepository, times(testDataLoader.getValidDTO().size())).saveAndFlush(any(Employee.class));
-        verify(employeeRepository, times(2*testDataLoader.getValidDTO().size() +
+        verify(employeeRepository, times(2 * testDataLoader.getValidDTO().size() +
                 testDataLoader.getInvalidDTO().size())).findById(anyLong());
         // db connection failed
         when(employeeRepository.findById(anyLong())).thenThrow(CannotGetJdbcConnectionException.class);
@@ -216,7 +214,7 @@ class EmployeeControllerTest {
                         .content(requestJson))
                 .andExpect(status().is(503));
         verify(employeeRepository, times(testDataLoader.getValidDTO().size())).saveAndFlush(any(Employee.class));
-        verify(employeeRepository, times(1 + 2*testDataLoader.getValidDTO().size() +
+        verify(employeeRepository, times(1 + 2 * testDataLoader.getValidDTO().size() +
                 testDataLoader.getInvalidDTO().size())).findById(anyLong());
     }
 
@@ -231,7 +229,7 @@ class EmployeeControllerTest {
         verify(employeeRepository, times(1)).findById(anyLong());
         // invalid id
         final String[] invalidIdArr = {"-1", "0", "abc"};
-        for (String invalidId: invalidIdArr) {
+        for (String invalidId : invalidIdArr) {
             mockMvc.perform(delete("/employee/{id}", invalidId))
                     .andExpect(status().is(400));
         }
