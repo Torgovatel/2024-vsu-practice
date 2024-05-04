@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> exception(Exception ex, WebRequest webRequest) throws Exception {
+        System.out.println(ex.getMessage());
         return handleException(ex, webRequest);
     }
 }

@@ -80,6 +80,9 @@ public class EmployeeService {
             if (employeeId <= 0) {
                 throw new NumberFormatException();
             }
+            if (isNotValidEmployeeDTO(employeeDTO)) {
+                throw new InvalidDataException(employeeDTO.toString() + " is no valid employee");
+            }
             Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
             Employee existingEmployee = optionalEmployee.orElseThrow(() ->
                     new NotFoundException("Employee with id " + employeeId + " not found"));
@@ -91,9 +94,6 @@ public class EmployeeService {
                     .passportDate(Objects.requireNonNullElse(employeeDTO.getPassportDate(), existingEmployee.getPassportDate()))
                     .salary(Objects.requireNonNullElse(employeeDTO.getSalary(), existingEmployee.getSalary()))
                     .build();
-            if (isNotValidEmployeeDTO(employeeDTO)) {
-                throw new InvalidDataException(employeeDTO.toString() + " is no valid employee");
-            }
             existingEmployee.setName(Objects.requireNonNullElse(employeeDTO.getName(), existingEmployee.getName()));
             existingEmployee.setSurname(Objects.requireNonNullElse(employeeDTO.getSurname(), existingEmployee.getSurname()));
             existingEmployee.setPassportNumber(Objects.requireNonNullElse(employeeDTO.getPassportNumber(), existingEmployee.getPassportNumber()));
