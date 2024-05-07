@@ -27,16 +27,30 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreatedEmployeeDTO"
+                  "$ref": "#/components/schemas/CEmployeeDTO"
                 }
               }
             }
           },
           "400": {
-            "description": "Данные сотрудника некорректны"
+            "description": "Данные сотрудника некорректны",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDTO"
+                }
+              }
+            }
           },
           "503": {
-            "description": "Сервис недоступен"
+            "description": "Сервис недоступен",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDTO"
+                }
+              }
+            }
           }
         }
       }
@@ -53,7 +67,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CreatedEmployeeDTO"
+                    "$ref": "#/components/schemas/CEmployeeDTO"
                   }
                 },
                 "examples": {
@@ -82,7 +96,14 @@
             }
           },
           "503": {
-            "description": "Сервис недоступен"
+            "description": "Сервис недоступен",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDTO"
+                }
+              }
+            }
           }
         }
       }
@@ -108,19 +129,40 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreatedEmployeeDTO"
+                  "$ref": "#/components/schemas/CEmployeeDTO"
                 }
               }
             }
           },
           "400": {
-            "description": "Некорректный EmployeeID (pathVariable: ID)"
+            "description": "Некорректный EmployeeID (pathVariable: ID)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDTO"
+                }
+              }
+            }
           },
           "404": {
-            "description": "Сотрудник не найден"
+            "description": "Сотрудник не найден",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDTO"
+                }
+              }
+            }
           },
           "503": {
-            "description": "Сервис недоступен"
+            "description": "Сервис недоступен",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDTO"
+                }
+              }
+            }
           }
         }
       },
@@ -144,7 +186,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdatedEmployeeDTO"
+                "$ref": "#/components/schemas/UEmployeeDTO"
               }
             }
           }
@@ -154,13 +196,34 @@
             "description": "Информация о сотруднике успешно обновлена"
           },
           "400": {
-            "description": "Данные сотрудника некорректны"
+            "description": "Данные сотрудника некорректны",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDTO"
+                }
+              }
+            }
           },
           "404": {
-            "description": "Сотрудник не найден"
+            "description": "Сотрудник не найден",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDTO"
+                }
+              }
+            }
           },
           "503": {
-            "description": "Сервис недоступен"
+            "description": "Сервис недоступен",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDTO"
+                }
+              }
+            }
           }
         }
       },
@@ -183,13 +246,34 @@
             "description": "Сотрудник успешно удален"
           },
           "400": {
-            "description": "Некорректный EmployeeID (pathVariable: ID)"
+            "description": "Некорректный EmployeeID (pathVariable: ID)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDTO"
+                }
+              }
+            }
           },
           "404": {
-            "description": "Сотрудник не найден"
+            "description": "Сотрудник не найден",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDTO"
+                }
+              }
+            }
           },
           "503": {
-            "description": "Сервис недоступен"
+            "description": "Сервис недоступен",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDTO"
+                }
+              }
+            }
           }
         }
       }
@@ -250,7 +334,7 @@
           "salary": 65000
         }
       },
-      "CreatedEmployeeDTO": {
+      "CEmployeeDTO": {
         "type": "object",
         "required": [
           "id",
@@ -304,7 +388,7 @@
           "salary": 65000
         }
       },
-      "UpdatedEmployeeDTO": {
+      "UEmployeeDTO": {
         "type": "object",
         "properties": {
           "name": {
@@ -333,6 +417,38 @@
             "description": "Зарплата (положительное число)",
             "minimum": 1,
             "default": 40000
+          }
+        }
+      },
+      "ErrorDTO": {
+        "type": "object",
+        "required": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "instance"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Тип ошибки"
+          },
+          "title": {
+            "type": "string",
+            "description": "Общее название ошибки"
+          },
+          "status": {
+            "type": "integer",
+            "description": "Http статус запроса, соответствующий ошибке"
+          },
+          "detail": {
+            "type": "string",
+            "description": "Подробное описание ошибки"
+          },
+          "instance": {
+            "type": "string",
+            "description": "Путь, по которому произошла ошибка"
           }
         }
       }
