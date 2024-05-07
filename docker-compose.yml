@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  db_pg:
+    image: postgres:16
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: Practice
+    ports:
+      - "5432:5432"
+
+  employee-management-app:
+    build: .
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db_pg
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db_pg:5432/Practice
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
